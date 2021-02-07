@@ -13,7 +13,7 @@ public class TypeAuto {
     private long id;
     private String type;
     @OneToMany(
-            mappedBy = "car",
+            mappedBy = "typeAuto",
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )

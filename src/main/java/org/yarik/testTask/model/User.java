@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@Table(name = "usr")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,7 +19,7 @@ public class User {
             targetClass = Role.class,
             fetch = FetchType.EAGER
     )
-    @CollectionTable
+    @CollectionTable(name = "userRole", joinColumns = @JoinColumn(name = "userId"))
     private Set<Role> roles;
     private boolean isActive;
 }

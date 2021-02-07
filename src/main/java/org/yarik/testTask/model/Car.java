@@ -24,6 +24,6 @@ public class Car {
     private int mileage;
     private int price;
     private String location;
-    private boolean isDelete;
+    private boolean active;
     protected Car(){}
 }

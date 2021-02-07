@@ -14,13 +14,13 @@ public class CarBrand {
     private long id;
     private String name;
     @OneToMany(
-            mappedBy = "carModel",
+            mappedBy = "carBrand",
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private Set<CarModel> carModels;
     @OneToMany(
-            mappedBy = "car",
+            mappedBy = "carBrand",
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )

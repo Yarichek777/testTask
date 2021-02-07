@@ -17,7 +17,7 @@ public class CarModel {
     @JoinColumn(nullable = false)
     private CarBrand carBrand;
     @OneToMany(
-            mappedBy = "car",
+            mappedBy = "carModel",
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
