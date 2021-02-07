@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
-    List<Car> getAll();
+    List<Car> findAll();
     List<Car> findAllByCarBrand(CarBrand carBrand);
     List<Car> findAllByCarBrandAndCarModel(CarBrand carBrand, CarModel carModel);
     List<Car> findAllByCarBrandOrderByPrice(CarBrand carBrand);
@@ -20,7 +20,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findAllByYearBetween(int minYear, int maxYear);
     List<Car> findAllByMileageBefore(int maxMileage);
     List<Car> findAllByVolumeOfEngineBetween(double minValue, double maxValue);
-    List<Car> findAllByDeleteIs(boolean isDelete);
+    List<Car> findAllByActive(boolean active);
     List<Car> findAllByTypeAuto(TypeAuto typeAuto);
     Optional<Car> findById(long id);
     Car save(Car car);
