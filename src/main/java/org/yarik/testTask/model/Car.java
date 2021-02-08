@@ -24,6 +24,7 @@ public class Car {
     private int mileage;
     private int price;
     private String location;
+    private String photoPath;
     private boolean active;
     protected Car(){}
 }
