@@ -9,7 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface TypeAutoRepository extends JpaRepository<TypeAuto, Long> {
-    List<TypeAuto> findAll();
+    List<TypeAuto> findAllByOrderByType();
+    Optional<TypeAuto> findById(long id);
     Optional<TypeAuto> findByType(String type);
     TypeAuto save(TypeAuto typeAuto);
     void deleteByType(String type);

@@ -10,7 +10,8 @@ import java.util.Optional;
 @Repository
 public interface CarModelRepository extends JpaRepository<CarModel, Long> {
 
-    List<CarModel> findAll();
+    List<CarModel> findAllByOrderByName();
+    Optional<CarModel> findById(long id);
     Optional<CarModel> findByName(String name);
     CarModel save(CarModel carModel);
     void deleteByName(String name);
