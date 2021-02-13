@@ -15,10 +15,11 @@ public class CarBrandService {
     public CarBrandService(CarBrandRepository carBrandRepository) {
         this.carBrandRepository = carBrandRepository;
     }
-    public List<CarBrand> getCarBrands(){
-        return carBrandRepository.findAll();
+    public List<CarBrand> findAllOrderByName(){
+        return carBrandRepository.findAllByOrderByName();
     }
-    public Optional<CarBrand> findCarBrandByName(String name){
+    public Optional<CarBrand> findById(long id){ return  carBrandRepository.findById(id);}
+    public Optional<CarBrand> findByName(String name){
         return carBrandRepository.findByName(name);
     }
     public CarBrand save(CarBrand carBrand){

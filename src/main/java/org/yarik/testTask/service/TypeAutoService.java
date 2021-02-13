@@ -1,6 +1,7 @@
 package org.yarik.testTask.service;
 
 import org.springframework.stereotype.Service;
+import org.yarik.testTask.model.CarBrand;
 import org.yarik.testTask.model.TypeAuto;
 import org.yarik.testTask.repository.TypeAutoRepository;
 
@@ -14,17 +15,17 @@ public class TypeAutoService {
     public TypeAutoService(TypeAutoRepository typeAutoRepository) {
         this.typeAutoRepository = typeAutoRepository;
     }
-
-    List<TypeAuto> getAllTypesAuto(){
-        return typeAutoRepository.findAll();
+    public List<TypeAuto> findAllOrderByType(){
+        return typeAutoRepository.findAllByOrderByType();
     }
-    Optional<TypeAuto> findByType(String type){
+    public Optional<TypeAuto> findById(long id){ return  typeAutoRepository.findById(id);}
+    public Optional<TypeAuto> findByType(String type){
         return typeAutoRepository.findByType(type);
     }
-    TypeAuto save(TypeAuto typeAuto){
+    public TypeAuto save(TypeAuto typeAuto){
         return typeAutoRepository.save(typeAuto);
     }
-    void deleteByType(String type){
+    public void deleteByType(String type){
         typeAutoRepository.deleteByType(type);
     }
 }

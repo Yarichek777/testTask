@@ -1,6 +1,7 @@
 package org.yarik.testTask.service;
 
 import org.springframework.stereotype.Service;
+import org.yarik.testTask.model.CarBrand;
 import org.yarik.testTask.model.CarModel;
 import org.yarik.testTask.repository.CarModelRepository;
 
@@ -15,10 +16,11 @@ public class CarModelService {
         this.carModelRepository = carModelRepository;
     }
 
-    public List<CarModel> getAllCarModels(){
-        return carModelRepository.findAll();
+    public List<CarModel> findAllOrderByName(){
+        return carModelRepository.findAllByOrderByName();
     }
-    public Optional<CarModel> findCarModelsByName(String name){
+    public Optional<CarModel> findById(long id){ return  carModelRepository.findById(id);}
+    public Optional<CarModel> findByName(String name){
         return carModelRepository.findByName(name);
     }
     public CarModel save (CarModel carModel){

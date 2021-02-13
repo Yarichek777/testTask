@@ -18,18 +18,16 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public List<Car> getAllCars(){
-        return carRepository.findAll();
+    public List<Car> findAllOrderByPrice(){
+        return carRepository.findAllByOrderByPrice();
     }
-    public List<Car> findAllByCarBrand(CarBrand carBrand){
+    public List<Car> findAllByCarBrand(Optional<CarBrand> carBrand){
         return carRepository.findAllByCarBrand(carBrand);
     }
-    public List<Car> findAllByCarBrandAndCarModel(CarBrand carBrand, CarModel carModel){
-        return carRepository.findAllByCarBrandAndCarModel(carBrand, carModel);
+    public List<Car> findAllByCarModel(Optional<CarModel> carModel){
+        return carRepository.findAllByCarModel(carModel);
     }
-    public List<Car> findAllByCarBrandOrderByPrice(CarBrand carBrand){
-        return carRepository.findAllByCarBrandOrderByPrice(carBrand);
-    }
+
     public List<Car> findAllByPriceBetween(int minPrice, int maxPrice){
         return carRepository.findAllByPriceBetween(minPrice, maxPrice);
     }
@@ -45,7 +43,7 @@ public class CarService {
     public List<Car> findAllByActive(boolean active){
         return carRepository.findAllByActive(active);
     }
-    public List<Car> findAllByTypeAuto(TypeAuto typeAuto){
+    public List<Car> findAllByTypeAuto(Optional<TypeAuto> typeAuto){
         return carRepository.findAllByTypeAuto(typeAuto);
     }
     public Optional<Car> findById(long id){
