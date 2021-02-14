@@ -1,6 +1,8 @@
 package org.yarik.testTask.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(of = {"id"})
 @NoArgsConstructor
 public class CarModel {
     @Id
@@ -23,9 +26,10 @@ public class CarModel {
     private CarBrand carBrand;
     @OneToMany(
             mappedBy = "carModel",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true
     )
+    @JsonIgnore
     private Set<Car> cars;
 
 }

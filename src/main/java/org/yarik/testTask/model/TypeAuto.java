@@ -1,7 +1,7 @@
 package org.yarik.testTask.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(of = {"id"})
 @NoArgsConstructor
 public class TypeAuto {
     @Id
@@ -20,8 +21,9 @@ public class TypeAuto {
     private String type;
     @OneToMany(
             mappedBy = "typeAuto",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true
     )
+    @JsonIgnore
     private Set<Car> cars;
 }

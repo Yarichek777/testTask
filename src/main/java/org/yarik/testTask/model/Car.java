@@ -1,6 +1,7 @@
 package org.yarik.testTask.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,9 +10,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
+@EqualsAndHashCode(of = {"id"})
 @NoArgsConstructor
 public class Car {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -23,6 +24,10 @@ public class Car {
     @JoinColumn(nullable = false)
     @NotBlank(message = "field 'carModel' must not be empty!")
     private CarModel carModel;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    @NotBlank(message = "field 'user' must not be empty!")
+    private User user;
     @ManyToOne
     @JoinColumn(nullable = false)
     @NotBlank(message = "field 'typeAuto' must not be empty!")
@@ -42,6 +47,8 @@ public class Car {
     @NotBlank(message = "field 'location' must not be empty!")
     @Size(min = 2, max = 30)
     private String location;
+    @Size(min = 0, max = 2048)
+    private String description;
     @Size(min = 2, max = 200)
     private String photoPath;
     @NotBlank(message = "field 'active' must not be empty!")
