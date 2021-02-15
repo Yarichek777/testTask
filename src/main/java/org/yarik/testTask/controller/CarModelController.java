@@ -2,15 +2,12 @@ package org.yarik.testTask.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.yarik.testTask.model.CarBrand;
 import org.yarik.testTask.model.CarModel;
 import org.yarik.testTask.service.CarModelService;
 
-import java.util.List;
-
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/carModel")
@@ -36,13 +33,11 @@ public class CarModelController {
     }
 
     @PostMapping("add")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public CarModel addCarModel(@Valid @RequestBody CarModel carModel) {
         return carModelService.save(carModel);
     }
 
     @DeleteMapping("delete/{name}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteCarBrand(@PathVariable String name) {
         carModelService.deleteByName(name);
     }

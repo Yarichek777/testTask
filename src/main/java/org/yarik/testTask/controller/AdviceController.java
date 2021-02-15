@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
+import org.yarik.testTask.jwt.JwtAuthenticationException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.NoSuchElementException;
@@ -25,6 +26,11 @@ public class AdviceController {
     @ExceptionHandler(value = ConstraintViolationException.class)
     public ResponseEntity<String> constraintViolationException() {
         return new ResponseEntity<>("Not valid data in the request!", HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(value = JwtAuthenticationException.class)
+    public ResponseEntity<String> jwtAuthenticationException(){
+        return new ResponseEntity<>("JWT token is expired or invalid!", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(value = IllegalArgumentException.class)

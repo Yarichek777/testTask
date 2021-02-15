@@ -2,7 +2,6 @@ package org.yarik.testTask.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.yarik.testTask.model.CarBrand;
 import org.yarik.testTask.service.CarBrandService;
@@ -33,13 +32,11 @@ public class CarBrandController {
         return carBrandService.findById(id).get();
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("add")
     public CarBrand addCarBrand(@Valid @RequestBody CarBrand carBrand) {
         return carBrandService.save(carBrand);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("delete/{name}")
     public void deleteCarBrand(@PathVariable String name) {
         carBrandService.deleteByName(name);

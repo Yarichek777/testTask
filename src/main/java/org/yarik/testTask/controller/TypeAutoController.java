@@ -2,7 +2,6 @@ package org.yarik.testTask.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.yarik.testTask.model.TypeAuto;
 import org.yarik.testTask.service.TypeAutoService;
@@ -35,13 +34,11 @@ public class TypeAutoController {
     }
 
     @PostMapping("add")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public TypeAuto addTypeAuto(@Valid @RequestBody TypeAuto typeAuto) {
         return typeAutoService.save(typeAuto);
     }
 
     @DeleteMapping("delete/{name}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteTypeAuto(@PathVariable String name) {
         typeAutoService.deleteByType(name);
     }
