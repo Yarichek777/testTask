@@ -1,0 +1,13 @@
+create sequence hibernate_sequence start 1 increment 1;
+create table car (id int8 not null, active boolean not null, description varchar(2048), location varchar(30), mileage int4 not null, photo_path varchar(200), price int4 not null, volume_of_engine float8 not null, year int4 not null, car_brand_id int8 not null, car_model_id int8 not null, type_auto_id int8 not null, user_id int8 not null, primary key (id));
+create table car_brand (id int8 not null, name varchar(30), primary key (id));
+create table car_model (id int8 not null, name varchar(20), car_brand_id int8 not null, primary key (id));
+create table type_auto (id int8 not null, type varchar(20), primary key (id));
+create table user_role (user_id int8 not null, roles varchar(255));
+create table usr (id int8 not null, is_active boolean not null, login varchar(20), password varchar(1024), primary key (id));
+alter table if exists car add constraint FK25qij9tft0j67d5u0uhfqdraw foreign key (car_brand_id) references car_brand;
+alter table if exists car add constraint FKgfht1l5lcn8gbugha10mnt4bg foreign key (car_model_id) references car_model;
+alter table if exists car add constraint FKp0qb11mhvrhrvxdboifgt69is foreign key (type_auto_id) references type_auto;
+alter table if exists car add constraint FKbj0tgdmw3f5i8bgu5bj66909k foreign key (user_id) references usr;
+alter table if exists car_model add constraint FK9r90hp4dmt4wtv6mebm9bv5n3 foreign key (car_brand_id) references car_brand;
+alter table if exists user_role add constraint FKfpm8swft53ulq2hl11yplpr5 foreign key (user_id) references usr;
