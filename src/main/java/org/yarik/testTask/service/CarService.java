@@ -1,5 +1,7 @@
 package org.yarik.testTask.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.yarik.testTask.model.Car;
 import org.yarik.testTask.model.CarBrand;
@@ -7,52 +9,62 @@ import org.yarik.testTask.model.CarModel;
 import org.yarik.testTask.model.TypeAuto;
 import org.yarik.testTask.repository.CarRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CarService {
 
     protected final CarRepository carRepository;
+
     public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
-    public List<Car> findAllOrderByPrice(){
-        return carRepository.findAllByOrderByPrice();
-    }
-    public List<Car> findAllByCarBrand(Optional<CarBrand> carBrand){
-        return carRepository.findAllByCarBrand(carBrand);
-    }
-    public List<Car> findAllByCarModel(Optional<CarModel> carModel){
-        return carRepository.findAllByCarModel(carModel);
+    public Page<Car> findAllOrderByPrice(Pageable pageable) {
+        return carRepository.findAllByOrderByPrice(pageable);
     }
 
-    public List<Car> findAllByPriceBetween(int minPrice, int maxPrice){
-        return carRepository.findAllByPriceBetween(minPrice, maxPrice);
+    public Page<Car> findAllByCarBrand(Optional<CarBrand> carBrand, Pageable pageable) {
+        return carRepository.findAllByCarBrand(carBrand, pageable);
     }
-    public List<Car> findAllByYearBetween(int minYear, int maxYear){
-        return carRepository.findAllByYearBetween(minYear, maxYear);
+
+    public Page<Car> findAllByCarModel(Optional<CarModel> carModel, Pageable pageable) {
+        return carRepository.findAllByCarModel(carModel, pageable);
     }
-    public List<Car> findAllByMileageBefore(int maxMileage){
-        return carRepository.findAllByMileageBefore(maxMileage);
+
+    public Page<Car> findAllByPriceBetween(int minPrice, int maxPrice, Pageable pageable) {
+        return carRepository.findAllByPriceBetween(minPrice, maxPrice, pageable);
     }
-    public List<Car> findAllByVolumeOfEngineBetween(double minValue, double maxValue){
-        return carRepository.findAllByVolumeOfEngineBetween(minValue, maxValue);
+
+    public Page<Car> findAllByYearBetween(int minYear, int maxYear, Pageable pageable) {
+        return carRepository.findAllByYearBetween(minYear, maxYear, pageable);
     }
-    public List<Car> findAllByActive(boolean active){
-        return carRepository.findAllByActive(active);
+
+    public Page<Car> findAllByMileageBefore(int maxMileage, Pageable pageable) {
+        return carRepository.findAllByMileageBefore(maxMileage, pageable);
     }
-    public List<Car> findAllByTypeAuto(Optional<TypeAuto> typeAuto){
-        return carRepository.findAllByTypeAuto(typeAuto);
+
+    public Page<Car> findAllByVolumeOfEngineBetween(double minValue, double maxValue, Pageable pageable) {
+        return carRepository.findAllByVolumeOfEngineBetween(minValue, maxValue, pageable);
     }
-    public Optional<Car> findById(long id){
+
+    public Page<Car> findAllByActive(boolean active, Pageable pageable) {
+        return carRepository.findAllByActive(active, pageable);
+    }
+
+    public Page<Car> findAllByTypeAuto(Optional<TypeAuto> typeAuto, Pageable pageable) {
+        return carRepository.findAllByTypeAuto(typeAuto, pageable);
+    }
+
+    public Optional<Car> findById(long id) {
         return carRepository.findById(id);
     }
-    public Car save(Car car){
+
+    public Car save(Car car) {
         return carRepository.save(car);
     }
-    public void deleteById(long id){
+
+    public void deleteById(long id) {
         carRepository.deleteById(id);
     }
 }
