@@ -16,29 +16,43 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
 
     protected final UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public List<User> getAll(){
+
+    public List<User> getAll() {
         return userRepository.findAllByOrderByLogin();
     }
-    public Optional<User> findByLoginAndPassword(String login, String password){
-        return userRepository.findByLoginAndPassword(login, password);
+
+    public User findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
-    public User save(User user){
+
+    public User save(User user) {
         user.setRoles(Collections.singleton(Role.USER));
         user.setActive(true);
         return userRepository.save(user);
     }
-    public boolean existsByLogin(String login){
+
+    public boolean existsByLogin(String login) {
         return userRepository.existsByLogin(login);
     }
-    public boolean existsByPassword(String password){
+
+    public boolean existsByPassword(String password) {
         return userRepository.existsByPassword(password);
     }
-    public Optional<User> findById(long id){ return  userRepository.findById(id);}
+
+    public Optional<User> findById(long id) {
+        return userRepository.findById(id);
+    }
+
+    public void deleteById(long id){
+        userRepository.deleteById(id);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-       return userRepository.findByLogin(s);
+        return userRepository.findByLogin(s);
     }
 }
