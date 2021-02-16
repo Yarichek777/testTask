@@ -1,6 +1,5 @@
 package org.yarik.testTask.controller;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.yarik.testTask.model.CarModel;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/carModel")
-@Tag(name = "carModel", description = "methods for carModel")
 @AllArgsConstructor
 public class CarModelController {
 

@@ -1,8 +1,8 @@
 package org.yarik.testTask.controller;
 
 
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@Tag(name = "user", description = "methods for user")
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("api/user")
 public class UserController {
 

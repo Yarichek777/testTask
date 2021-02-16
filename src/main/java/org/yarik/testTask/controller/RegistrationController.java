@@ -1,6 +1,5 @@
 package org.yarik.testTask.controller;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@Tag(name = "registration", description = "methods for auth/registration")
 public class RegistrationController {
 
     private final UserService userService;

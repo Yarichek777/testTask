@@ -38,13 +38,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-//                .authorizeRequests()
-//                    .antMatchers("**/car/add", "**/car/delete/").hasAnyRole("USER", "ADMIN")
-//                    .antMatchers("**/delete/", "**/add/", "/api/car/getAll").hasRole("ADMIN")
-//                    .antMatchers("/login", "/registration").permitAll()
-//                    .antMatchers("/api/car/", "api/carBrand/", "api/carModel/", "api/typeAuto/").permitAll()
-//                    .antMatchers("/api/user/").hasRole("ADMIN")
-//                .and()
+                .authorizeRequests()
+                    .antMatchers("**/car/add", "**/car/delete/").hasAnyRole("USER", "ADMIN")
+                    .antMatchers("**/delete/", "**/add/", "/api/car/getAll").hasRole("ADMIN")
+                    .antMatchers("/login", "/registration").permitAll()
+                    .antMatchers("/api/car/", "api/carBrand/", "api/carModel/", "api/typeAuto/").permitAll()
+                    .antMatchers("/api/user/").hasRole("ADMIN")
+                .and()
                     .apply(new JwtConfigurer(jwtTokenProvider));
     }
     @Override
